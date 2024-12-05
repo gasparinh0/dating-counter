@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, set, onValue } from 'firebase/database';
+
+//Imports do firebase
 import app from '../firebase/firebase.config.js';
+import { getDatabase, ref, set, onValue } from 'firebase/database';
+
+//Imports do lottieFiles
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import heart from '../animations/heart.lottie'
 
 const Button = () => {
     const [likes, setLikes] = useState(0);
@@ -59,16 +65,20 @@ const Button = () => {
 
     return (
         <div>
-            <button 
-                onClick={handleLike} 
+            <button
+                onClick={handleLike}
                 disabled={hasLiked}
-                className={`mt-5 px-4 py-2 rounded text-white ${
-                    hasLiked ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'
-                }`}
+                className={`mt-5 flex flex-row items-center rounded text-white ${hasLiked ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'
+                    }`}
             >
-                {hasLiked ? 'Já curtido!' : 'Amei!'}
+                <DotLottieReact
+                    src={heart}
+                    loop
+                    autoplay
+                    style={{ width: "50%", height: "50%", marginRight: "-10px"}}
+                />
+                {likes} {hasLiked ? 'Já curtido!' : 'Amei!'}
             </button>
-            <p className="mt-2">Curtidas: {likes}</p>
         </div>
     );
 };
