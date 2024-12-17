@@ -8,6 +8,9 @@ import { getDatabase, ref, set, onValue } from 'firebase/database';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import heart from '../animations/heart.lottie'
 
+//Imports de imagem
+import heartNotFilled from '../assets/heartNotFilled.png'
+
 const Button = () => {
     const [likes, setLikes] = useState(0);
     const [hasLiked, setHasLiked] = useState(false);
@@ -68,16 +71,31 @@ const Button = () => {
             <button
                 onClick={handleLike}
                 disabled={hasLiked}
-                className={`mt-5 flex flex-row items-center rounded text-white ${hasLiked ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'
+                className={`mt-5 p-1 pl-2 pr-3 flex flex-row items-center transition-all duration-300 rounded text-white ${hasLiked ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'
                     }`}
             >
-                <DotLottieReact
-                    src={heart}
-                    loop
-                    autoplay
-                    style={{ width: "50%", height: "50%", marginRight: "-10px"}}
-                />
-                {likes} {hasLiked ? 'Já curtido!' : 'Amei!'}
+                <div className='flex items-center w-[30px] h-[30px]'>
+                    {!hasLiked ? (
+                        <img
+                            src={heartNotFilled}
+                            alt="Heart not filled"
+                            style={{
+                                width: '20px',
+                                height: '20px',
+                            }}
+                        />
+                    ) : (
+                        <DotLottieReact
+                            src={heart}
+                            autoplay
+                            style={{
+                                width: '30px',
+                                height: '30px',
+                            }}
+                        />
+                    )}
+                </div>
+                {likes} {hasLiked ? 'Amei!' : 'Gostou?'}
             </button>
         </div>
     );
