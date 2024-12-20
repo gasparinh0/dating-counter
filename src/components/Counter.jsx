@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { differenceInYears, differenceInMonths, differenceInDays, differenceInHours, differenceInMinutes } from 'date-fns';
+import {
+  differenceInYears,
+  differenceInMonths,
+  differenceInDays,
+  differenceInHours,
+  differenceInMinutes,
+  addYears,
+  addMonths,
+  addDays,
+  addHours
+} from 'date-fns';
 
 const Contador = () => {
   const [tempo, setTempo] = useState({
@@ -11,26 +21,36 @@ const Contador = () => {
   });
 
   useEffect(() => {
-    const dataInicial = new Date(2023, 8, 16); // 16 de setembro de 2023
+    const dataInicial = new Date("2023-09-16T00:00:00"); // Data inicial mais legível
+
     const atualizarContador = () => {
       const agora = new Date();
+
       const anos = differenceInYears(agora, dataInicial);
-      const meses = differenceInMonths(agora, dataInicial) % 12;
-      const dias = differenceInDays(agora, dataInicial) % 30;
-      const horas = differenceInHours(agora, dataInicial) % 24;
-      const minutos = differenceInMinutes(agora, dataInicial) % 60;
+      const dataAposAnos = addYears(dataInicial, anos);
+
+      const meses = differenceInMonths(agora, dataAposAnos);
+      const dataAposMeses = addMonths(dataAposAnos, meses);
+
+      const dias = differenceInDays(agora, dataAposMeses);
+      const dataAposDias = addDays(dataAposMeses, dias);
+
+      const horas = differenceInHours(agora, dataAposDias);
+      const dataAposHoras = addHours(dataAposDias, horas);
+
+      const minutos = differenceInMinutes(agora, dataAposHoras);
 
       setTempo({ anos, meses, dias, horas, minutos });
     };
 
     atualizarContador(); // Atualiza imediatamente
-    const intervalo = setInterval(atualizarContador, 60000); // Atualiza a cada minuto
+    const intervalo = setInterval(atualizarContador, 1000); // Atualiza a cada segundo
 
     return () => clearInterval(intervalo); // Limpa o intervalo ao desmontar
   }, []);
 
   return (
-    <div className="flex flex-row space-x-3 mt-5">
+    <div className="flex flex-row space-x-3 mt-5 font-bold">
       <div className="flex flex-col items-center">
         <p>{tempo.anos}</p>
         <p>Ano{tempo.anos !== 1 ? 's' : ''}</p>
