@@ -71,7 +71,7 @@ const Button = () => {
             <button
                 onClick={handleLike}
                 disabled={hasLiked}
-                className={`mt-5 p-1 pl-2 pr-3 flex flex-row items-center transition-all duration-300 rounded text-white ${hasLiked ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'
+                className={`mt-5 p-1 px-3 font-bold flex hover:scale-110 flex-row items-center transition-all duration-300 rounded-xl text-white ${hasLiked ? 'bg-gray-500' : 'bg-gradient-to-r from-rose-300 to-rose-400'
                     }`}
             >
                 <div className='flex items-center w-[30px] h-[30px]'>
@@ -95,7 +95,7 @@ const Button = () => {
                         />
                     )}
                 </div>
-                {likes} {hasLiked ? 'Amei!' : 'Gostou?'}
+                {likes} 
             </button>
         </div>
     );
