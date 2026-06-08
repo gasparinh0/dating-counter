@@ -19,12 +19,10 @@ const Button = () => {
     const likesRef = ref(database, 'likes');
     const likedUsersRef = ref(database, 'likedUsers');
 
-    // Função para gerar IDs únicos
     const generateUniqueId = () => {
         return `user_${Math.random().toString(36).substr(2, 9)}`;
     };
 
-    // Identificador do usuário (simulado com localStorage)
     const userId = localStorage.getItem('userId') || generateUniqueId();
 
     useEffect(() => {
@@ -67,36 +65,37 @@ const Button = () => {
     };
 
     return (
-        <div>
+        <div className="flex flex-col items-center justify-center mt-2 w-full">
             <button
                 onClick={handleLike}
                 disabled={hasLiked}
-                className={`mt-5 p-1 px-3 font-bold flex hover:scale-110 flex-row items-center transition-all duration-300 rounded-xl text-white ${hasLiked ? 'bg-gray-500' : 'bg-gradient-to-r from-rose-300 to-rose-400'
-                    }`}
+                className={`group relative py-3 px-8 font-bold flex hover:scale-105 active:scale-95 flex-row items-center gap-3 transition-all duration-300 rounded-full text-white shadow-lg overflow-hidden ${
+                    hasLiked
+                        ? 'bg-rose-800/80 cursor-default shadow-rose-900/50'
+                        : 'bg-gradient-to-r from-rose-400 via-pink-500 to-rose-500 shadow-rose-500/50 hover:shadow-rose-400/60 hover:from-rose-300 hover:to-pink-400'
+                }`}
             >
-                <div className='flex items-center w-[30px] h-[30px]'>
+                {/* Efeito de brilho no hover */}
+                {!hasLiked && <div className="absolute inset-0 w-full h-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-full"></div>}
+
+                <div className='flex items-center justify-center w-8 h-8 z-10'>
                     {!hasLiked ? (
                         <img
                             src={heartNotFilled}
                             alt="Heart not filled"
-                            style={{
-                                width: '20px',
-                                height: '20px',
-                            }}
+                            className="w-6 h-6 object-contain drop-shadow-md group-hover:animate-pulse"
                         />
                     ) : (
                         <DotLottieReact
                             src={heart}
                             autoplay
-                            style={{
-                                width: '30px',
-                                height: '30px',
-                            }}
+                            className="w-10 h-10 transform scale-150"
                         />
                     )}
                 </div>
-                {likes} 
+                <span className="text-xl tracking-wider z-10">{likes}</span>
             </button>
+            <p className="text-rose-200/70 text-xs mt-3 font-medium">Deixe seu amor aqui!</p>
         </div>
     );
 };

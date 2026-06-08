@@ -21,7 +21,7 @@ const Contador = () => {
   });
 
   useEffect(() => {
-    const dataInicial = new Date("2023-09-16T00:00:00"); // Data inicial mais legível
+    const dataInicial = new Date("2023-09-16T00:00:00");
 
     const atualizarContador = () => {
       const agora = new Date();
@@ -43,33 +43,33 @@ const Contador = () => {
       setTempo({ anos, meses, dias, horas, minutos });
     };
 
-    atualizarContador(); // Atualiza imediatamente
-    const intervalo = setInterval(atualizarContador, 1000); // Atualiza a cada segundo
+    atualizarContador();
+    const intervalo = setInterval(atualizarContador, 1000);
 
-    return () => clearInterval(intervalo); // Limpa o intervalo ao desmontar
+    return () => clearInterval(intervalo);
   }, []);
 
   return (
-    <div className="flex flex-row space-x-3 mt-5 font-bold">
-      <div className="flex flex-col items-center">
-        <p>{tempo.anos}</p>
-        <p>Ano{tempo.anos !== 1 ? 's' : ''}</p>
+    <div className="flex flex-row space-x-2 sm:space-x-4 mt-6 font-bold w-full justify-center">
+      <div className="flex flex-col items-center bg-rose-950/40 p-2 sm:p-3 rounded-2xl border border-rose-300/20 shadow-inner min-w-[60px] sm:min-w-[70px]">
+        <p className="text-2xl sm:text-3xl text-rose-200">{tempo.anos}</p>
+        <p className="text-xs sm:text-sm font-medium text-rose-100/80">Ano{tempo.anos !== 1 ? 's' : ''}</p>
       </div>
-      <div className="flex flex-col items-center">
-        <p>{tempo.meses}</p>
-        <p>Mes{tempo.meses !== 1 ? 'es' : ''}</p>
+      <div className="flex flex-col items-center bg-rose-950/40 p-2 sm:p-3 rounded-2xl border border-rose-300/20 shadow-inner min-w-[60px] sm:min-w-[70px]">
+        <p className="text-2xl sm:text-3xl text-rose-200">{tempo.meses}</p>
+        <p className="text-xs sm:text-sm font-medium text-rose-100/80">Mês{tempo.meses !== 1 ? 'es' : ''}</p>
       </div>
-      <div className="flex flex-col items-center">
-        <p>{tempo.dias}</p>
-        <p>Dia{tempo.dias !== 1 ? 's' : ''}</p>
+      <div className="flex flex-col items-center bg-rose-950/40 p-2 sm:p-3 rounded-2xl border border-rose-300/20 shadow-inner min-w-[60px] sm:min-w-[70px]">
+        <p className="text-2xl sm:text-3xl text-rose-200">{tempo.dias}</p>
+        <p className="text-xs sm:text-sm font-medium text-rose-100/80">Dia{tempo.dias !== 1 ? 's' : ''}</p>
       </div>
-      <div className="flex flex-col items-center">
-        <p>{tempo.horas}</p>
-        <p>Hora{tempo.horas !== 1 ? 's' : ''}</p>
+      <div className="flex flex-col items-center bg-rose-950/40 p-2 sm:p-3 rounded-2xl border border-rose-300/20 shadow-inner min-w-[60px] sm:min-w-[70px]">
+        <p className="text-2xl sm:text-3xl text-rose-200">{tempo.horas}</p>
+        <p className="text-xs sm:text-sm font-medium text-rose-100/80">Hora{tempo.horas !== 1 ? 's' : ''}</p>
       </div>
-      <div className="flex flex-col items-center">
-        <p>{tempo.minutos}</p>
-        <p>Minuto{tempo.minutos !== 1 ? 's' : ''}</p>
+      <div className="flex flex-col items-center bg-rose-950/40 p-2 sm:p-3 rounded-2xl border border-rose-300/20 shadow-inner min-w-[60px] sm:min-w-[70px]">
+        <p className="text-2xl sm:text-3xl text-rose-200">{tempo.minutos}</p>
+        <p className="text-xs sm:text-sm font-medium text-rose-100/80">Min{tempo.minutos !== 1 ? 's' : ''}</p>
       </div>
     </div>
   );
