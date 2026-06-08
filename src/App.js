@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-[url('./assets/background.png')] bg-cover bg-center min-h-screen flex flex-col items-center justify-center relative">
+    <div className="bg-[url('./assets/background.jpg')] bg-cover bg-center min-h-screen flex flex-col items-center justify-center relative">
       <MusicPlayer />
       {/* Overlay com gradiente romântico vibrante */}
       <div className="absolute inset-0 bg-gradient-to-br from-rose-600/40 via-pink-600/30 to-purple-800/60 backdrop-blur-[2px]"></div>
